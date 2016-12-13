@@ -41,7 +41,8 @@
 
 7. The HTTP server with the trained chatbot can be run; <br/>
    *BASH/DOS> chatbot_training_client.{sh,bat} run_server ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
-   It is noted that if the HTTP server with the same trained chatbot exists, it should be automatically killed and re-runed with new trained chatbot and this HTTP server should be automatically killed in one day.
+   It is noted that if the HTTP server with the same trained chatbot exists, it should be automatically killed and re-run with new trained chatbot and this HTTP server should be automatically killed in one day.
+   After that, you can see the browser connected to chatbot HTTP server.
    
 7. The HTTP server with the trained chatbot can be killed; <br/>
    *BASH/DOS> chatbot_training_client.{sh,bat} kill_server ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
