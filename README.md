@@ -1,8 +1,7 @@
 # Chatbot Training Automation
 * This is a repository of all the codes and scripts for chatbot training automation.
 * Actually, [the repository for chatbot training client/server scripts](https://github.com/aihoon/Chatbot_Training_Scripts) was released in 16/12/05. <br/>
-  However, it was found that all the Python codes and shell scripts for chatbot training had **NOT** been managed and  
-  even didn't work.
+  However, it was found that all the Python codes and shell scripts for chatbot training had **NOT** been managed and even didn't work.
 * The directory structure was re-built, all the Python codes and shell scripts was re-visited, and the chatbot training automation flow was organized.
 * From the viewpoint of user, the chatbot training flow is managed by only one shell script, <br/>
   ***chatbot_training_client.sh*** for Linux and ***chatbot_training_client.bat*** for WINDOWS.
@@ -48,6 +47,6 @@
    *BASH/DOS> chatbot_training_client.{sh,bat} kill_server ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
 
 # Remark
-* The chatbot training automation package with the Python codes and shell scripts was installed only in 10.122.64.63. <br/>
+* The chatbot training automation package with the Python codes and shell scripts was installed only in 10.122.64.63. 
   If you want to train the chatbot in the other server, just let aihoon know the server IP.
   
