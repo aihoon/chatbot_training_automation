@@ -61,7 +61,6 @@ IF "%CMD_TYPE%"=="start" (
     echo.
     echo. # Copy test and train files to server.
     scp -i %PEM_FILE% %PROJ_NAME%.*.txt msl@%SERVER_IP%:%BASE_DIR%
-
 )
 
 
@@ -84,6 +83,7 @@ goto :eof
     ssh -i %PEM_FILE% msl@%SERVER_IP% %SERVER_CMD%
         
         IF "%CMD_TYPE%"=="run_server" (
+        del /s %HTTP_URL__TXT%
         scp -i %PEM_FILE% msl@%SERVER_IP%:%BASE_DIR%/%HTTP_URL__TXT% .
         set /p HTTP_URL=<%HTTP_URL__TXT%
                 echo. %HTTP_URL% Start...
@@ -110,5 +110,3 @@ goto :eof
     )
     
     EXIT /B
-    
-
