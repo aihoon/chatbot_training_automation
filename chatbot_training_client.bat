@@ -16,7 +16,7 @@ IF "%4"=="" (
     echo.
     echo.  # USAGE
     echo.    $ chatbot_training_client.bat COMMAND LANGUAGE PROJECT_NAME SERVER_NUMBER
-    echo.      where COMMAND is start, check, stop, remove, run_server, or kill_server.
+    echo.      where COMMAND is start, check, stop, remove, run_server, check_server, or kill_server.
     echo       LANG is kor or eng.
     echo.
     goto :eof
@@ -64,12 +64,13 @@ IF "%CMD_TYPE%"=="start" (
 )
 
 
-IF "%CMD_TYPE%"=="start"       goto :cond
-IF "%CMD_TYPE%"=="check"       goto :cond:
-IF "%CMD_TYPE%"=="stop"        goto :cond
-IF "%CMD_TYPE%"=="remove"      goto :cond
-IF "%CMD_TYPE%"=="run_server"  goto :cond
-IF "%CMD_TYPE%"=="kill_server" goto :cond
+IF "%CMD_TYPE%"=="start"        goto :cond
+IF "%CMD_TYPE%"=="check"        goto :cond
+IF "%CMD_TYPE%"=="stop"         goto :cond
+IF "%CMD_TYPE%"=="remove"       goto :cond
+IF "%CMD_TYPE%"=="run_server"   goto :cond
+IF "%CMD_TYPE%"=="check_server" goto :cond
+IF "%CMD_TYPE%"=="kill_server"  goto :cond
 
 echo.
 echo. @ Error: command not defined, %CMD_THYPE%.
