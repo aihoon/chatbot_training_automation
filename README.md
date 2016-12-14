@@ -13,7 +13,6 @@
 ## Windows OS
 * Install OpenSSH 7.3p1-2 via https://www.mls-software.com/files/setupssh-7.3p1-2.exe <br/>
   It is noted that the other version of OpenSSH MUST be uninstalled.
-* Install WinScp via https://winscp.net/download/WinSCP-5.9.3-Setup.exe
 
 ## OS X
 * None
