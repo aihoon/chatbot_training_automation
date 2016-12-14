@@ -97,6 +97,7 @@ fi
 
 if [ "${CMD_TYPE}" == "run_server"  ]; then
 
+    rm -f ${HTTP_URL__TXT}
     scp -i ${PEM_FILE} msl@${SERVER_IP}:${BASE_DIR}/${HTTP_URL__TXT} .
     HTTP_URL=$(cat ${HTTP_URL__TXT}) 
     python -m webbrowser "${HTTP_URL}"
