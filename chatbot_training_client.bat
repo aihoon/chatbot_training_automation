@@ -6,6 +6,7 @@ set "BASE_IP=10.122.64"
 set "CHATBOT_SERVER__SH=chatbot_training_server.sh"
 set "CHATBOT_CLIENT__SH=chatbot_training_client.sh"
 set "SERVER_PEM_FILE=/home/msl/.ssh/id_rsa"
+set "HTTP_URL__TXT=http_url.txt"
 
 ::########################################################################
 :: Check input arguments...
@@ -63,8 +64,9 @@ IF "%CMD_TYPE%"=="start" (
 
 )
 
+
 IF "%CMD_TYPE%"=="start"       goto :cond
-IF "%CMD_TYPE%"=="check"       goto :cond
+IF "%CMD_TYPE%"=="check"       goto :cond:
 IF "%CMD_TYPE%"=="stop"        goto :cond
 IF "%CMD_TYPE%"=="remove"      goto :cond
 IF "%CMD_TYPE%"=="run_server"  goto :cond
@@ -78,8 +80,15 @@ goto :eof
 
 :cond
     
-    set SERVER_CMD="cd %SCR_DIR%; ./%SERVER_SH% %CMD_TYPE% %PROJ_NAME%"
+    set SERVER_CMD="cd %SCR_DIR%; ./%CHATBOT_SERVER__SH% %CMD_TYPE% %LANG% %PROJ_NAME%"
     ssh -i %PEM_FILE% msl@%SERVER_IP% %SERVER_CMD%
+        
+        IF "%CMD_TYPE%"=="run_server" (
+        scp -i %PEM_FILE% msl@%SERVER_IP%:%BASE_DIR%/%HTTP_URL__TXT% .
+        set /p HTTP_URL=<%HTTP_URL__TXT%
+                echo. %HTTP_URL% Start...
+                start %HTTP_URL%
+        )
     goto :eof
 
 :eof
@@ -101,3 +110,5 @@ goto :eof
     )
     
     EXIT /B
+    
+
