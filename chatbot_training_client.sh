@@ -34,7 +34,7 @@ then
     echo 
     echo " # USAGE"
     echo " \$ ${CHATBOT_CLIENT__SH} COMMAND LANG PROJECT_NAME SERVER_NUMBER"
-    echo "   where COMMAND is start, check, stop, remove, run_server, or kill_server."
+    echo "   where COMMAND is start, check, stop, remove, run_server, check_server, or kill_server."
     echo "             LANG is kor or eng."
     exit
 fi
@@ -79,12 +79,13 @@ if [ "${CMD_TYPE}" == "start" ]; then
 
 fi
 
-if [ "${CMD_TYPE}" == "start"       ] || 
-   [ "${CMD_TYPE}" == "check"       ] || 
-   [ "${CMD_TYPE}" == "stop"        ] || 
-   [ "${CMD_TYPE}" == "remove"      ] || 
-   [ "${CMD_TYPE}" == "run_server"  ] ||
-   [ "${CMD_TYPE}" == "kill_server" ]; then
+if [ "${CMD_TYPE}" == "start"        ] || 
+   [ "${CMD_TYPE}" == "check"        ] || 
+   [ "${CMD_TYPE}" == "stop"         ] || 
+   [ "${CMD_TYPE}" == "remove"       ] || 
+   [ "${CMD_TYPE}" == "run_server"   ] ||
+   [ "${CMD_TYPE}" == "check_server" ] ||
+   [ "${CMD_TYPE}" == "kill_server"  ]; then
 
     SERVER_CMD="cd ${SCR_DIR}; ./${CHATBOT_SERVER__SH} ${CMD_TYPE} ${LANG} ${PROJ_NAME}"
     ssh -i ${PEM_FILE} msl@${SERVER_IP} ${SERVER_CMD}
