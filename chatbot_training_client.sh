@@ -6,9 +6,10 @@ BASE_IP="10.122.64"
 CHATBOT_CLIENT__SH="chatbot_training_client.sh"
 CHATBOT_SERVER__SH="chatbot_training_server.sh"
 SERVER_PEM_FILE="/home/msl/.ssh/id_rsa"
+HTTP_URL__TXT="http_url.txt"
 
 ###########################################################################
-#   SUBROUTINES...	
+#   SUBROUTINES...      
 
 check_pem () {
 
@@ -94,3 +95,10 @@ else
 
 fi
 
+if [ "${CMD_TYPE}" == "run_server"  ]; then
+
+    scp -i ${PEM_FILE} msl@${SERVER_IP}:${BASE_DIR}/${HTTP_URL__TXT} .
+    HTTP_URL=$(cat ${HTTP_URL__TXT}) 
+    python -m webbrowser "${HTTP_URL}"
+
+fi
