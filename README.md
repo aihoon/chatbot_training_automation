@@ -7,6 +7,7 @@
   ***chatbot_training_client.sh*** for Linux and ***chatbot_training_client.bat*** for WINDOWS.
 * Web-based test environment is supported.
 * Automatic free port allocation is supported in HTTP server initiation in order to support multiple chatbot test.
+* All the HTTP servers running in the specific machine can be monitored.
 
 # Prerequisite
 
@@ -45,7 +46,10 @@
    It is noted that if the HTTP server with the same trained chatbot exists, it should be automatically killed and re-run with new trained chatbot. <br/>
    A web browser connected to chatbot HTTP server is opened automatically in order for chatbot trainer to test the trained chatbot directly on the web environment.
    
-7. The HTTP server with the trained chatbot can be killed; <br/>
+8. The HTTP servers running the specific machine can be monitored; <br/>
+   *BASH/DOS> chatbot_training_client.{sh,bat} check_server ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
+
+9. The HTTP server with the trained chatbot can be killed; <br/>
    *BASH/DOS> chatbot_training_client.{sh,bat} kill_server ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
 
 # Remark
