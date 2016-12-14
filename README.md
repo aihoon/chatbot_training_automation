@@ -5,13 +5,15 @@
 * The directory structure was re-built, all the Python codes and shell scripts was re-visited, and the chatbot training automation flow was organized.
 * From the viewpoint of user, the chatbot training flow is managed by only one shell script, <br/>
   ***chatbot_training_client.sh*** for Linux and ***chatbot_training_client.bat*** for WINDOWS.
+* Web-based test environment is supported.
+* Automatic free port allocation is supported in HTTP server initiation in order to support multiple chatbot test.
 
 # Prerequisite
 
 ## Windows OS
 * Install OpenSSH 7.3p1-2 via https://www.mls-software.com/files/setupssh-7.3p1-2.exe <br/>
   It is noted that the other version of OpenSSH MUST be uninstalled.
-* Install WinScp via https://winscp.net/dwonload/WinSCP-5.9.3-Setup.exe
+* Install WinScp via https://winscp.net/download/WinSCP-5.9.3-Setup.exe
 
 ## OS X
 * None
