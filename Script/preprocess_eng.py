@@ -48,11 +48,16 @@ def main():
 	for line in infile:
 		line = line.replace('\n','')
 		#print '---', line
-		data = line.split('\t')
-		if len(data) != 4:
-			print >> sys.stderr, 'Error:', line
-			break
-		session, user, _, sent = data
+		## data = line.split('\t')
+		## if len(data) != 4:
+        ## 		print >> sys.stderr, 'Error:', line
+        ## break
+		## session, user, _, sent = data
+        data = line.split()
+        if not data:
+            continue
+        session, user, sent = data[0], data[1], " ".join(data[3:])
+
 		word = sent.split()
 		if prev_session != session: # 技记捞 官柴
 			# 捞傈 技记 付公府
