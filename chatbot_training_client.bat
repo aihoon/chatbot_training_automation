@@ -15,7 +15,7 @@ set "HTTP_URL__TXT=http_url.txt"
 IF "%4"=="" (
     echo.
     echo.  # USAGE
-    echo.    $ chatbot_training_client.bat COMMAND LANGUAGE PROJECT_NAME SERVER_NUMBER
+    echo.    $ chatbot_training_client.bat LANGUAGE PROJECT_NAME SERVER_NUMBER COMMAND
     echo.      where COMMAND is start, check, stop, remove, run_server, check_server, or kill_server.
     echo       LANG is kor or eng.
     echo.
@@ -25,10 +25,10 @@ IF "%4"=="" (
 ::########################################################################
 :: Define variables...
 
-set "CMD_TYPE=%1"
-set "LANG=%2"
-set "PROJ_NAME=%3"
-set "SERVER_NUM=%4"
+set "LANG=%1"
+set "PROJ_NAME=%2"
+set "SERVER_NUM=%3"
+set "CMD_TYPE=%4"
 
 set "TEST_FILE=%PROJ_NAME%.test.txt"
 set "TRAIN_FILE=%PROJ_NAME%.train.txt"

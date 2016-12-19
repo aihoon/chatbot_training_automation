@@ -33,7 +33,7 @@ if [ "$#" -ne "4" ]
 then
     echo 
     echo " # USAGE"
-    echo " \$ ${CHATBOT_CLIENT__SH} COMMAND LANG PROJECT_NAME SERVER_NUMBER"
+    echo " \$ ${CHATBOT_CLIENT__SH} LANG PROJECT_NAME SERVER_NUMBER COMMAND"
     echo "   where COMMAND is start, check, stop, remove, run_server, check_server, or kill_server."
     echo "             LANG is kor or eng."
     exit
@@ -42,10 +42,10 @@ fi
 ###########################################################################
 # Define variables...
 
-CMD_TYPE="$1"
-LANG="$2"
-PROJ_NAME="$3"
-SERVER_NUM="$4"
+LANG="$1"
+PROJ_NAME="$2"
+SERVER_NUM="$3"
+CMD_TYPE="$4"
 
 TEST_FILE=${PROJ_NAME}.test.txt
 TRAIN_FILE=${PROJ_NAME}.train.txt
