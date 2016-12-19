@@ -1,5 +1,5 @@
 # Chatbot Training Automation
-* This is a repository of all the codes and scripts for chatbot training automation.
+* This is a repository of all the codes and scripts for chatbot training automation..
 * Actually, [the repository for chatbot training client/server scripts](https://github.com/aihoon/Chatbot_Training_Scripts) was released in 16/12/05. <br/>
   However, it was found that all the Python codes and shell scripts for chatbot training had **NOT** been managed and even didn't work.
 * The directory structure was re-built, all the Python codes and shell scripts was re-visited, and the chatbot training automation flow was organized.
