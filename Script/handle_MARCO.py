@@ -57,8 +57,8 @@ def main(arg):
     print(" # Write training text data...")
     for line in json_data:
         for idx in range(len(line["answers"])):
-            fid.write("{:<10d}  BB  100 {}\n".format(cnt, line["query"].encode('utf-8')))
-            fid.write("{:<10d}  AA  200 {}\n".format(cnt, line["answers"][idx].encode('utf-8')))
+            fid.write("{:<10d}  BB  100 {}\n".format(cnt, line["query"].replace('\n', ' ').encode('utf-8')))
+            fid.write("{:<10d}  AA  200 {}\n".format(cnt, line["answers"][idx].replace('\n', ' ').encode('utf-8')))
             cnt += 1
     fid.close()
 
