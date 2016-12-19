@@ -31,26 +31,26 @@
    chatbot_training_client.bat for WINDOWS or chatbot_training_client.sh for Linux.
 
 4. start the chatbot training with "start" command and test/training text data;  <br/>
-   *BASH/DOS> chatbot_training_client.{sh,bat} start ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
+   *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} start* <br/>
    where ${SERVER_NUM} is the last IP of the server based on 10.122.64.\* <br/>
    and ${LANGUAGE} is kor or eng.
    
 5. The training progress can be checked with "check" command; <br/>
-   *BASH/DOS> chatbot_training_client.{sh,bat} check ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
+   *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} check* <br/>
 
 6. The training process can be killed with "stop" command; <br/>
-   *BASH/DOS> chatbot_training_client.{sh,bat} stop ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
+   *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} stop* <br/>
 
 7. The HTTP server with the trained chatbot can be run; <br/>
-   *BASH/DOS> chatbot_training_client.{sh,bat} run_server ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
+   *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} run_server* <br/>
    It is noted that if the HTTP server with the same trained chatbot exists, it should be automatically killed and re-run with new trained chatbot. <br/>
    A web browser connected to chatbot HTTP server is opened automatically in order for chatbot trainer to test the trained chatbot directly on the web environment.
    
 8. The HTTP servers running the specific machine can be monitored; <br/>
-   *BASH/DOS> chatbot_training_client.{sh,bat} check_server ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
+   *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} check_server* <br/>
 
 9. The HTTP server with the trained chatbot can be killed; <br/>
-   *BASH/DOS> chatbot_training_client.{sh,bat} kill_server ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM}* <br/>
+   *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} kill_server* <br/>
 
 # Remark
 * The chatbot training automation package with the Python codes and shell scripts was installed only in 10.122.64.63. 
