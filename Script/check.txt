@@ -1,1 +1,0 @@
-msl       13356  100  3.2 83708568 2160004 ?    Rl   07:35 110:09 python /home/msl/Mindsbot/Script/train.py chatty_v00 kor
