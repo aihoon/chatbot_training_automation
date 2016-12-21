@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PATH=/usr/sbin:${PATH}
+
 ########################################################################
 
 if [ "$#" -ne "3" ]; then
@@ -126,7 +128,17 @@ elif [ "${CMD}" == "check" ]; then
     ps aux | grep -e python | grep -e ${PROJ_NAME} | grep -v grep > ${CHECK_FILE}
 
     if [ ! -s ${CHECK_FILE} ]; then
-        echo -e " # Training process for ${PROJ_NAME} doesn't exist. Training might be done."
+        echo -e " # Training process for ${PROJ_NAME} doesn't exist. Training might be done or halted"
+
+        if [ -f "${TAR_DIR}/${PROJ_NAME}.log" ]; then
+            echo -e " # Check if there is \"Error\" in log file..."
+            echo -e "---------------------------------------------"
+            cat ${TAR_DIR}/${PROJ_NAME}.log | grep -E "Error|error"
+            echo -e "---------------------------------------------"
+        else
+            echo -e "\n % Log file not found...\n"
+        fi
+
     else
         echo -e " # Training process for ${PROJ_NAME} is still running..."
         echo -e "\n # The followings are the current logging information..."
@@ -181,6 +193,7 @@ elif [ "${CMD}" == "run_server" ]; then
         MY_IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
         MY_PORT=0
         find_empty_port
+        echo -e " # IP:PORT = ${MY_IP}:${MY_PORT}"
         run_server 
 
     fi
