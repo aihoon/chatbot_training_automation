@@ -50,6 +50,7 @@ def word2char(sent):
 def char2word(sent):
 	word = sent.split()
 	result = ''
+    lex = ''    # HOON... Have to get confirmation from Dr. Hwang.
 	for i, w in enumerate(word):
 		if w == '</s>':
 			result += w
@@ -107,7 +108,10 @@ class MTReqHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		source_sentence2 = word2char(source_sentence)
 		#print 'query2:', source_sentence2
 
-		translation, alignment, nbest_translation = self.server.sampler.sample(source_sentence2, beam, ignore_unk)
+		# 20161223 yghwang add for score issue
+		#translation, alignment, nbest_translation = self.server.sampler.sample(source_sentence2, beam, ignore_unk)
+		translation, alignment, nbest_translation, nbest_score = self.server.sampler.sample(source_sentence2, beam, ignore_unk)
+
 		translation = char2word(translation)
 		print 'answer(cp949):', translation
 		print 'answer(utf8):', unicode(translation,'cp949').encode('utf8')
@@ -123,10 +127,24 @@ class MTReqHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		self.wfile.write(alignment)
 		self.wfile.write('<b>N-best</b>:\n')
 		self.wfile.write('<ul>\n')
+
+
+		
+		# 20161223, yghwang add for score issue
+		score_idx = 0
 		for trans in nbest_translation:
 			result = char2word(trans)
-			self.wfile.write('<li>'+result+'\n')
+			oStr = '<li>' + result + '(' + str(nbest_score[score_idx]) + ')\n'
+			self.wfile.write(oStr)
+			score_idx = score_idx + 1
+
+		#for trans in nbest_translation:
+		#	result = char2word(trans)
+		#	self.wfile.write('<li>'+result+'\n')
+
+
 		self.wfile.write('</ul>\n')
+
 		query_form = "<form method=\"GET\" action=\"http://" + my_ip + ":" + my_port + "\">" + \
                      """<textarea name="query" cols=80 rows=5>
                         </textarea>
@@ -154,7 +172,22 @@ class Sampler:
 				x_idx_list.append(self.word2idx[w])
 			else:
 				x_idx_list.append(self.word2idx['UNK'])
-		[y_idx_list, alignment, nbest_y_idx_list] = self.rnn_encoder_decoder.beam_search(x_idx_list, beam, ignore_unk)
+
+		# 20161223 yghwang score issue
+		#[y_idx_list, alignment, nbest_y_idx_list] = self.rnn_encoder_decoder.beam_search(x_idx_list, beam, ignore_unk)
+		[ AAA, alignment, BBB] = self.rnn_encoder_decoder.beam_search_percentage(x_idx_list, beam, ignore_unk)
+		print 'AAA', AAA
+		y_idx_list = AAA[0]
+
+		nbest_y_idx_list = []
+		nbest_score = []
+		for a in BBB:
+			#print a[0], a[1]
+			nbest_y_idx_list.append(a[0])
+			nbest_score.append(a[1])
+		
+		#[y_idx_list, alignment, nbest_y_idx_list] = self.rnn_encoder_decoder.beam_search(x_idx_list, beam, ignore_unk)
+
 		# 1-best
 		best_tgt_sent = map(lambda x: self.idx2word[x].replace('</s>','EOS'), y_idx_list)
 		translation = ' '.join(best_tgt_sent[:-1])
@@ -178,7 +211,10 @@ class Sampler:
 					else: alignment_str += '<td>%.1f</td>'%a
 				alignment_str += '</tr>\n'
 			alignment_str += '</table>\n'
-		return translation, alignment_str, nbest_translation
+
+		# 20161223 yghwang add for score
+		#return translation, alignment_str, nbest_translation
+		return translation, alignment_str, nbest_translation, nbest_score
 
 
 ########################################################################

@@ -413,6 +413,7 @@ class GRU_DO_search(GRU_encdec.GRU_encdec):
 
 			new_nbest_list.sort(key=lambda tup: tup[0], reverse=True)
 			nbest_list = new_nbest_list[:nbest]
+
 			if not update_flag: break
 
 		nbest_list.sort(key=lambda tup: tup[0], reverse=True)
@@ -420,6 +421,7 @@ class GRU_DO_search(GRU_encdec.GRU_encdec):
 		nbest_y_list = []
 		for score, h_tm1, y_tm1, y_list, alignment_list in nbest_list:
 			nbest_y_list.append(y_list)
+			print '#', score, y_list
 		# 1-best
 		score, h_tm1, y_tm1, y_list, alignment_list = nbest_list[0]
 		return y_list, alignment_list, nbest_y_list
