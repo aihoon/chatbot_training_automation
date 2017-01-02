@@ -101,7 +101,7 @@ goto :eof
         echo. # Check if test HTTP URL file exists or not in server...
         del /s %URL_FILE% >nul 2>&1
         set SERVER_CMD2="[[ -f %BASE_DIR%/%URL_FILE% ]] && echo YES || echo NO;"
-        ssh -i %PEM_FILE% msl@%MSL63% %SERVER_CMD2% > %TEMP_FILE%
+        ssh -i %PEM_FILE% msl@%SERVER_IP% %SERVER_CMD2% > %TEMP_FILE%
         set /p ANS=<%TEMP_FILE%
 
         IF "%ANS%"=="YES" (
