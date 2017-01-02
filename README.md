@@ -1,4 +1,5 @@
 # Chatbot Training Automation
+* Updated in 01/01/2017.
 * This is a repository of all the codes and scripts for chatbot training automation..
 * Actually, [the repository for chatbot training client/server scripts](https://github.com/aihoon/Chatbot_Training_Scripts) was released in 16/12/05. <br/>
   However, it was found that all the Python codes and shell scripts for chatbot training had **NOT** been managed and even didn't work.
@@ -7,7 +8,15 @@
   ***chatbot_training_client.sh*** for Linux and ***chatbot_training_client.bat*** for WINDOWS.
 * Web-based test environment is supported.
 * Automatic free port allocation is supported in HTTP server initiation in order to support multiple chatbot test.
-* All the HTTP servers running in the specific machine can be monitored.
+* All the HTTP servers running in the specific machine can be shown.
+* The commands supported from the client shell script are
+  - start
+  - check
+  - stop
+  - remove
+  - run_server
+  - kill_server
+  - show_servers
 
 # Prerequisite
 
@@ -43,11 +52,13 @@
 
 7. The HTTP server with the trained chatbot can be run; <br/>
    *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} run_server* <br/>
-   It is noted that if the HTTP server with the same trained chatbot exists, it should be automatically killed and re-run with new trained chatbot. <br/>
-   A web browser connected to chatbot HTTP server is opened automatically in order for chatbot trainer to test the trained chatbot directly on the web environment.
+   It is noted that if the HTTP server with the same trained chatbot exists, 
+   it should be automatically killed and re-run with new trained chatbot. <br/>
+   A web browser connected to chatbot HTTP server is opened automatically 
+   in order for chatbot trainer to test the trained chatbot directly on the web environment.
    
-8. The HTTP servers running the specific machine can be monitored; <br/>
-   *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} check_server* <br/>
+8. All the HTTP servers running the specific machine can be shown; <br/>
+   *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} show_servers* <br/>
 
 9. The HTTP server with the trained chatbot can be killed; <br/>
    *BASH/DOS> chatbot_training_client.{sh,bat} ${LANGUAGE} ${PROJECT_NAME} ${SERVER_NUM} kill_server* <br/>
