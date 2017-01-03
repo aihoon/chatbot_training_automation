@@ -1,5 +1,7 @@
 @echo off
 
+setlocal enabledelayedexpansion
+
 set "REMOTE_CONTROL=NO"
 set "MSL63=125.132.250.204"
 set "TEMP_FILE=temp.txt"
@@ -93,6 +95,7 @@ goto :eof
 :cond
     
     set SERVER_CMD="cd %SCR_DIR%; ./%CHATBOT_SERVER__SH% %CMD_TYPE% %LANG% %PROJ_NAME%"
+    set SERVER_CMD2="[[ -f %BASE_DIR%/%URL_FILE% ]] && printf YES || printf NO;"
     ssh -i %PEM_FILE% msl@%SERVER_IP% %SERVER_CMD%
 
     IF "%CMD_TYPE%"=="run_server" (
@@ -100,11 +103,11 @@ goto :eof
         echo.
         echo. # Check if test HTTP URL file exists or not in server...
         del /s %URL_FILE% >nul 2>&1
-        set SERVER_CMD2="[[ -f %BASE_DIR%/%URL_FILE% ]] && echo YES || echo NO;"
+        :: echo SERVER_CMD2 = %SERVER_CMD2%
         ssh -i %PEM_FILE% msl@%SERVER_IP% %SERVER_CMD2% > %TEMP_FILE%
         set /p ANS=<%TEMP_FILE%
-
-        IF "%ANS%"=="YES" (
+        :: echo ANS is !ANS!
+        IF "!ANS!"=="YES" (
             echo.
             echo. # Secure copy test HTTP URL file from server to local...
             echo.
@@ -119,7 +122,7 @@ goto :eof
 
             echo.
             echo. # Open the webpage for %PROJ_NAME% test via %HTTP_URL% 
-            start %HTTP_URL%
+            start !HTTP_URL!
         ) ELSE (
           echo.
           echo @ URL file not found.
