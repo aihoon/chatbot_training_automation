@@ -156,6 +156,8 @@ if [ "${CMD}" == "start" ]; then
     
     echo -e "\n # Make project directory, ${PROJ_NAME} and copy the test and train files to it."
     mkdir ${TAR_DIR}
+    dos2unix ${SRC_DIR}/${TEST_FILE} 2> /dev/null
+    dos2unix ${SRC_DIR}/${TRAIN_FILE} 2> /dev/null
     mv -f ${SRC_DIR}/${TEST_FILE}  ${TAR_DIR}
     mv -f ${SRC_DIR}/${TRAIN_FILE} ${TAR_DIR}
     

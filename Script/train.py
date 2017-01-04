@@ -90,7 +90,7 @@ def main(prjt_name, language, param=None):
 		 'decay_lr_schedule': 5, # decay learning rate if the accuracy did not increase 
 		 'decay_lr_rate': 0.5, # decay learning rate if the accuracy did not increase 
 		 'savemodel': True}	 
-	print param
+	#print param
 
 	# Select Korean Or English
 	if language == "kor":
@@ -103,6 +103,8 @@ def main(prjt_name, language, param=None):
 	else:
 		print "Error: Wrong choice of language " + language
 		sys.exit(1)
+
+	print param
 
 	# load the dataset
 	f = gzip.open(param['train_data'])
